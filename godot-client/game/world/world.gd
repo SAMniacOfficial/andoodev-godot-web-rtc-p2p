@@ -14,7 +14,7 @@ signal signal_player_kill(id)
 # - Log messages in-game (killed by X messages)? (upper right corner)
 # - Add Melee 
 # - Nerf or change how jump works?
-# - Disconnect button hide/show game world. unmount wolrd, show
+# - Disconnect button hide/show game world. unmount world, show
 
 func _ready() -> void:
 	add_to_group('World')
