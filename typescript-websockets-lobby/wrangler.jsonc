@@ -23,7 +23,8 @@
 		}
 	],
 	"observability": {
-		"enabled": false
+		"enabled": true,
+		"logs": { "enabled": true }
 	}
 	/**
 	 * Smart Placement
