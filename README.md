@@ -147,7 +147,7 @@ While WebRTC is indeed true, direct P2P, it's not easy to get the clients ready 
 - Special thanks to BatteryAcidDev https://www.youtube.com/@BatteryAcidDev
 - Special thanks to Netfox discord https://github.com/foxssake/netfox
 
-<sub><sup>TODO: detailed documentation of assets, strip resources, sounds (https://pixabay.com/sound-effects is the sound source, but ned to doc). Note: LICENCE in this repo does not apply to these. I know how that's not how it works, but just what I've done temporarily, do not distribute, etc. etc. I'm new to open source, sorry, work in progres, please contact if there any issues.</sup></sub>
+<sub><sup>TODO: detailed documentation of assets, strip resources, sounds (https://pixabay.com/sound-effects is the sound source, but need to document or remove). Note: LICENCE in this repo does not apply to these. Assets are not to be distributed. I know how that's not how it works, but just what I've done temporarily, do not distribute, etc. etc. I'm new to open source, sorry, work in progres, please contact if there any issues.</sup></sub>
 
 ## Contributing
 

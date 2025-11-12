@@ -6,6 +6,7 @@ import * as crypto from 'crypto';
 import { Message } from '../models/message';
 
 // Formatted like a UUID-v4
+// NOTE: Not for players
 function lobbyId() {
 	return crypto.randomUUID().substring(0, 7);
 }
