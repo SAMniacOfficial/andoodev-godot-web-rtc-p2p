@@ -11,7 +11,7 @@ const CONFIG_PORT = 80;
 
 export interface Env {
 	WEBSOCKET_SERVER: DurableObjectNamespace<LobbyObject>;
-	SECRET_KEY: string;
+	SECRET_KEY: string; // OR: the default one I use: '9317e4d6-83b3-4188-94c4-353a2798d3c1'
 	TURN_KEY: string;
 }
 
@@ -58,7 +58,7 @@ export class LobbyObject extends DurableObject {
 		super(ctx, env);
 		this.gameServer = new GameServerHandler();
 		this.currentlyConnectedWebSockets = 0;
-		this.secretKey = env.SECRET_KEY;
+		this.secretKey = env.SECRET_KEY || '9317e4d6-83b3-4188-94c4-353a2798d3c1';
 		this.turnKey = env.TURN_KEY;
 	}
 

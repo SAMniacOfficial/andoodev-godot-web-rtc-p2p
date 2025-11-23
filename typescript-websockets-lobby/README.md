@@ -30,6 +30,12 @@ Create a file called `.dev.vars` and paste the secret key. This file is not comm
 SECRET_KEY="____YOUR_RANDOM_SECRET_KEY____"
 ```
 
+NOTE: The default secret key for this project is reproduced below. It's not a "true" secret currently, it's just designed to bounce random traffic or port explorers.
+
+```
+9317e4d6-83b3-4188-94c4-353a2798d3c1
+```
+
 ### How to set up in Cloudflare
 
 - Fork this project
