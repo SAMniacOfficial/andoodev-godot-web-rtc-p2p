@@ -17,9 +17,8 @@ material = SubResource("StandardMaterial3D_we8ss")
 size = Vector2(2000, 2000)
 orientation = 1
 
-[node name="World" type="Node3D" node_paths=PackedStringArray("player_container")]
+[node name="World" type="Node3D"]
 script = ExtResource("1_gy7s6")
-player_container = NodePath("PlayerContainer")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("2_lw343")

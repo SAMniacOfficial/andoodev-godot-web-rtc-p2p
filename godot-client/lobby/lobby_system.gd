@@ -69,6 +69,7 @@ var ws_connection_validated = false
 
 var current_username = ''
 var turn_server_enabled = false
+var host = null
 
 func _ready():
 	set_process(false)
@@ -80,6 +81,7 @@ func _ready():
 
 	signal_lobby_game_started.connect(_listen_for_connections_finished)
 	signal_lobby_game_started.connect(_listen_for_connections_finished_cancel)
+
 	
 func _process(_delta):
 	ws_peer.poll()
@@ -235,6 +237,7 @@ func user_disconnect():
 	
 
 func lobby_create():
+	host = ws_peer_id
 	_ws_send_action(ACTION.CreateLobby)
 
 func lobby_join(id: String):
@@ -278,6 +281,11 @@ func _network_create_multiplayer_peer(id: String):
 	web_rtc_peer = WebRTCMultiplayerPeer.new()
 	web_rtc_peer.create_mesh(int(ws_peer_id))
 	multiplayer.multiplayer_peer = web_rtc_peer
+	
+	# NOTE: We now have a multiplayer peer, connect signals
+	multiplayer.peer_connected.connect(add_player_to_game)
+	multiplayer.peer_disconnected.connect(remove_player_from_game)
+
 
 func _network_create_new_peer_connection(id: int):
 	if id != int(ws_peer_id):
@@ -341,6 +349,8 @@ func _network_update_ice_servers(ice_servers):
 var should_cancel_connections = false
 
 func _listen_for_connections_finished(lobby):
+
+	signal_client_connection_started.emit()
 	if should_cancel_connections == true:
 		return
 	
@@ -372,3 +382,18 @@ func generate_random_name():
 	var r3 = randi_range(0, Emi3.size() - 1)
 
 	return Emi1[r1] + Emi2[r2] + Emi3[r3]
+
+
+func add_player_to_game(id: int):
+	var has_id = id in get_tree().get_nodes_in_group('Players').map(func(node): int(node.name))
+	if has_id == true:
+		return
+
+	var world: World = get_tree().get_first_node_in_group('World')
+	world.add_player_to_world(id)
+	
+func remove_player_from_game(id: int):
+	var players: Array[Node] = get_tree().get_nodes_in_group('Players')
+	var player_to_remove = players.find_custom(func(item): return item.name == str(id))
+	if player_to_remove != -1:
+		players[player_to_remove].queue_free()

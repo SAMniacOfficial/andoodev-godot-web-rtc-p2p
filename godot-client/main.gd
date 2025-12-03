@@ -13,10 +13,9 @@ func _ready() -> void:
 		get_node_or_null("LobbyQuickConnect").queue_free()
 
 	# Game start signal
-	LobbySystem.signal_network_create_new_peer_connection.connect(new_game_connection)
+	LobbySystem.signal_client_connection_started.connect(new_game_connection)
 
-func new_game_connection(_id):
-	# TODO: Improve. This is fragile.
+func new_game_connection():
 	if get_node_or_null("World") == null:
 		if get_node_or_null("LobbyMenu"): get_node("LobbyMenu").hide()
 		if get_node_or_null("LobbyQuickConnect"): get_node("LobbyQuickConnect").hide()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://d27xhk2ygjsbr"]
+[gd_scene load_steps=7 format=3 uid="uid://d27xhk2ygjsbr"]
 
 [ext_resource type="Script" uid="uid://coyv53xc2grb0" path="res://game/Weapons/Misc/Scripts/HitableBoxScript.gd" id="1_2ye1w"]
 [ext_resource type="Texture2D" uid="uid://bt4nni6ml8c51" path="res://game/assets/textures/texture_10_red.png" id="2_gbcy8"]
@@ -11,6 +11,14 @@ uv1_triplanar = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_88vs1"]
 size = Vector3(1.01, 1.01, 1.01)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_6g31i"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
 
 [node name="HitableBox" type="RigidBody3D" groups=["HitableObjects"]]
 collision_layer = 16
@@ -25,3 +33,6 @@ mesh = SubResource("BoxMesh_rhfyy")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_88vs1")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_6g31i")
