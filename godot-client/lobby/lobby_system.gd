@@ -18,7 +18,7 @@ signal signal_lobby_game_started(lobby)
 signal signal_lobby_get_kicked
 signal signal_lobby_event(message)
 
-signal signal_network_create_new_peer_connection
+signal signal_network_create_new_peer_connection(id)
 signal signal_packet_parsed(message)
 signal signal_set_ice_servers(ice_servers)
 
