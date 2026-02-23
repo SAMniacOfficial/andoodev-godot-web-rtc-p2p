@@ -8,20 +8,19 @@ export enum EAction {
 	PlayerJoin = 'PlayerJoin', // 2
 	PlayerLeft = 'PlayerLeft', // 3
 	GetLobbies = 'GetLobbies', // 4
-	GetOwnLobby = 'GetOwnLobby', // 5
-	CreateLobby = 'CreateLobby', // 6
-	JoinLobby = 'JoinLobby', // 7
-	LeaveLobby = 'LeaveLobby', // 8
-	LobbyChanged = 'LobbyChanged', // 9
-	GameStarted = 'GameStarted', // 10
-	MessageToLobby = 'MessageToLobby', // 11
-	PlayerInfoUpdate = 'PlayerInfoUpdate', // 12
+	GetLobbyInfo = 'GetLobbyInfo',
+	CreateLobby = 'CreateLobby', // 5
+	JoinLobby = 'JoinLobby', // 6
+	LeaveLobby = 'LeaveLobby', // 7
+	LobbyChanged = 'LobbyChanged', // 8
+	GameStarted = 'GameStarted', // 9
+	PlayerInfoUpdate = 'PlayerInfoUpdate', // 10
 	// Web RTC
-	NewPeerConnection = 'NewPeerConnection', // 13
-	Offer = 'Offer', // 14
-	Answer = 'Answer', // 15
-	Candidate = 'Candidate', // 16
-	KickPlayer = 'KickPlayer', // 17
+	NewPeerConnection = 'NewPeerConnection', // 11
+	Offer = 'Offer', // 12
+	Answer = 'Answer', // 13
+	Candidate = 'Candidate', // 14
+	KickPlayer = 'KickPlayer', // 15
 	LobbyEvent = 'LobbyEvent',
 	SetIceServers = 'SetIceServers',
 }
