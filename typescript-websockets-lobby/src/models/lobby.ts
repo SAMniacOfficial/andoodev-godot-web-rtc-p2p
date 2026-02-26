@@ -100,6 +100,7 @@ export class Lobby {
 				players: this.players,
 				lobbyData: this.lobbyData,
 				isPublic: this.isPublic,
+				isPrivate: !this.isPublic,
 			};
 		} catch (err) {
 			LoggerHelper.logError(`An error had occurred while getting the lobby: ${err}`);
