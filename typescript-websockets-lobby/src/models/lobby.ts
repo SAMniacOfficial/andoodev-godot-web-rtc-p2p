@@ -12,7 +12,6 @@ export class Lobby {
 	lobbyData: any = {};
 	isGameStarted: boolean = false;
 	isPublic: boolean = true;
-	inProgress: boolean = false;
 
 	constructor(id: String, isPublic: boolean = true, players: ClientSocket[] = []) {
 		try {
@@ -20,7 +19,6 @@ export class Lobby {
 			this.id = id;
 			this.lobbyData = {};
 			this.isPublic = isPublic;
-			this.inProgress = false;
 		} catch (err) {
 			LoggerHelper.logError(`An error had occurred while creating the Lobby: ${err}`);
 		}
@@ -34,14 +32,6 @@ export class Lobby {
 			}
 			// Stop if the player is already in the lobby
 			if (this.players.find((el) => el.id === newPlayer.id)) {
-				return false;
-			}
-			// Stop if the lobby is full (max 2 players)
-			if (this.players.length >= 2) {
-				return false;
-			}
-			// Stop if the game is in progress
-			if (this.inProgress) {
 				return false;
 			}
 			newPlayer.lobbyId = this.id;
@@ -110,7 +100,6 @@ export class Lobby {
 				players: this.players,
 				lobbyData: this.lobbyData,
 				isPublic: this.isPublic,
-				inProgress: this.inProgress,
 			};
 		} catch (err) {
 			LoggerHelper.logError(`An error had occurred while getting the lobby: ${err}`);
