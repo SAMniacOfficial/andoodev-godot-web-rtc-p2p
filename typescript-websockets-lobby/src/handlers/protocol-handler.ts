@@ -95,9 +95,6 @@ export class ProtocolHelper {
 					LoggerHelper.logInfo('Recieved Lobby Start ' + message);
 					ProtocolHelper.startGameForLobby(gameServer, clientSocket, message, turnKey);
 					break;
-				case EAction.GameConnectionsFinished:
-					ProtocolHelper.markGameInProgress(gameServer, clientSocket);
-					break;
 				case EAction.Offer:
 				case EAction.Answer:
 				case EAction.Candidate:
@@ -171,7 +168,7 @@ export class ProtocolHelper {
 		}
 	};
 
-	// Experimental: For the GetLobbyInfo ACTION, still testing
+	// For the GetLobbyInfo ACTION, still testing
 	private static getLobbyInfo = (gameServer: GameServerHandler, clientSocket: ClientSocket, message: Message) => {
 		try {
 			const lobbyId = message?.payload?.id;
@@ -461,30 +458,6 @@ export class ProtocolHelper {
 			}
 		} catch (err: any) {
 			LoggerHelper.logError(`[ProtocolHelper.startGameForLobby()] An error had occurred while parsing a message: ${err}`);
-		}
-	};
-
-	// Experimental: Marks lobby as "inProgress" to avoid people entering a lobby in game
-	private static markGameInProgress = (gameServer: GameServerHandler, clientSocket: ClientSocket) => {
-		try {
-			const lobby = gameServer.getLobbyByPlayerId(clientSocket.id);
-			
-			if (lobby) {
-				lobby.inProgress = true;
-				LoggerHelper.logInfo(`Lobby ${lobby.id} marked as in progress`);
-				
-				// Notify all players in the lobby
-				lobby.players.forEach((player) => {
-					ProtocolHelper.sendLobbyChanged(player, lobby);
-				});
-				
-				// Update lobby list for all clients
-				gameServer.connectedClients.forEach((client) => {
-					ProtocolHelper.sendLobbyList(gameServer, client);
-				});
-			}
-		} catch (err: any) {
-			LoggerHelper.logError(`[ProtocolHelper.markGameInProgress()] An error had occurred: ${err}`);
 		}
 	};
 
