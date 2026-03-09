@@ -23,4 +23,5 @@ export enum EAction {
 	KickPlayer = 'KickPlayer', // 15
 	LobbyEvent = 'LobbyEvent',
 	SetIceServers = 'SetIceServers',
+	GameConnectionsFinished = 'GameConnectionsFinished'
 }
